@@ -61,7 +61,7 @@ returns
 ```
 ###Route Gating
 You can also "gate off" routes, which means that route is only available if your config enables it. Otherwise users will see a 503 Service Unavailable error. Here's an example:
-```
+```javascript
 var gate = require('kraken-feature-flagger/gate');
 
 router.get('/gated', gate('awesome-people-only'), function (req, res) {
