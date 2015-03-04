@@ -1,8 +1,9 @@
-kraken-feature-flags
+kraken-feature-flagger
 ===
-Feature flags for Kraken
+Feature flags for Kraken JS apps.
 
 ##Install
+
 ```npm install kraken-feature-flags --save```
 
 ##Usage
@@ -21,6 +22,7 @@ In your `config/config.json` file, add a `features` section and some features. S
 ```
 
 ### App initialization
+
 Create a kraken app as usual, and add the middleware to your app or an Express router/route.
 ```javascript
 var kraken = require('kraken-js'),
@@ -49,8 +51,9 @@ module.exports = function (router) {
 		}
 	});
 }
-###In views
 ```
+###In views
+
 You can set feature classes in your views as well, as `res.locals.featureClasses` is created for you:
 ```html
 <body class="{featureClasses}">...</body>
@@ -59,7 +62,9 @@ returns
 ```html
 <body class="feature-happy feature-awesome">...</body>
 ```
+
 ###Route Gating
+
 You can also "gate off" routes, which means that route is only available if your config enables it. Otherwise users will see a 503 Service Unavailable error. Here's an example:
 ```javascript
 var gate = require('kraken-feature-flagger/gate');
