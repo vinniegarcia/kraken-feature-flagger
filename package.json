@@ -4,9 +4,9 @@
   "description": "Feature Flags for Kraken",
   "main": "dist/index.js",
   "scripts": {
-    "prepublish": "grunt babel",
-    "compile": "",
-    "test": "grunt babel && grunt test"
+    "compile": "babel -d dist/ src/",
+    "prepublish": "npm run compile",
+    "test": "npm run compile && mocha dist/test/features.js"
   },
   "repository": {
     "type": "git",
