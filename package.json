@@ -18,7 +18,7 @@
     "kraken",
     "es6"
   ],
-  "author": "Vinnie Garcia <vinie@coev.co>",
+  "author": "Vinnie Garcia <vinnie@coev.co>",
   "license": "MIT",
   "devDependencies": {
     "babel": "^4.5.1",
