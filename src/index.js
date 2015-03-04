@@ -1,5 +1,5 @@
 
-function getFeatures() {
+const getFeatures = () => {
     
     return (req, res, next) => {
         const features = req.app.kraken.get('features'),
@@ -14,6 +14,6 @@ function getFeatures() {
         res.locals.featureClasses = featureClasses;
         next();
     };
-}
+};
 
 export default getFeatures;
