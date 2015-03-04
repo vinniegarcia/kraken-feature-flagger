@@ -1,3 +1,4 @@
+
 function getFeatures() {
     
     return (req, res, next) => {
