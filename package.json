@@ -1,0 +1,43 @@
+{
+  "name": "kraken-feature-flagger",
+  "version": "1.0.0",
+  "description": "Feature Flags for Kraken",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublish": "grunt babel",
+    "compile": "",
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinniegarcia/kraken-feature-flags.git"
+  },
+  "keywords": [
+    "features",
+    "flags",
+    "kraken",
+    "es6"
+  ],
+  "author": "Vinnie Garcia <vingarcia@paypal.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^4.5.1",
+    "eslint": "^0.15.0",
+    "express": "^4.12.2",
+    "grunt": "^0.4.5",
+    "grunt-babel": "^4.0.0",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-eslint": "^7.0.1",
+    "grunt-mocha-cli": "^1.12.0",
+    "kraken": "^0.2.1",
+    "kraken-js": "^1.0.3",
+    "load-grunt-config": "^0.16.0",
+    "load-grunt-tasks": "^3.1.0",
+    "mocha": "^2.1.0",
+    "portfinder": "^0.4.0"
+  },
+  "dependencies": {
+    "supertest": "^0.15.0"
+  }
+}
