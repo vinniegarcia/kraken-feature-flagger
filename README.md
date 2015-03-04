@@ -1,5 +1,8 @@
 kraken-feature-flagger
 ===
+[![npm version](https://badge.fury.io/js/kraken-feature-flagger.svg)](http://badge.fury.io/js/kraken-feature-flagger)
+[![travis build information](https://api.travis-ci.org/vinniegarcia/kraken-feature-flagger.svg)](https://travis-ci.org/vinniegarcia/kraken-feature-flagger)
+
 Feature flags for Kraken JS apps.
 
 ## Install
