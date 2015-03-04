@@ -18,8 +18,8 @@
     "kraken",
     "es6"
   ],
-  "author": "Vinnie Garcia <vingarcia@paypal.com>",
-  "license": "ISC",
+  "author": "Vinnie Garcia <vinie@coev.co>",
+  "license": "MIT",
   "devDependencies": {
     "babel": "^4.5.1",
     "eslint": "^0.15.0",

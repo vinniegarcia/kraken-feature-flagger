@@ -7,6 +7,19 @@ Feature flags for Kraken
 
 ##Usage
 
+### Configuration
+In your `config/config.json` file, add a `features` section and some features. Set each feature to true or false to enable/disable:
+```json
+{
+    "features": {
+        "happy": true,
+        "awesome": true,
+        "deprecated-feature": false
+    },
+    ...
+}
+```
+
 ### App initialization
 Create a kraken app as usual, and add the middleware to your app or an Express router/route.
 ```javascript
