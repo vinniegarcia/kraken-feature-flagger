@@ -2,11 +2,11 @@ kraken-feature-flagger
 ===
 Feature flags for Kraken JS apps.
 
-##Install
+## Install
 
 ```npm install kraken-feature-flags --save```
 
-##Usage
+## Usage
 
 ### Configuration
 In your `config/config.json` file, add a `features` section and some features. Set each feature to true or false to enable/disable:
@@ -39,6 +39,9 @@ app.use(kraken(options));
 //or in your routers
 app.use(features());
 ```
+
+### Routes
+
 In a route, your enabled features will be available on `req.features`:
 ```javascript
 module.exports = function (router) {
@@ -52,7 +55,8 @@ module.exports = function (router) {
 	});
 }
 ```
-###In views
+
+### In views
 
 You can set feature classes in your views as well, as `res.locals.featureClasses` is created for you:
 ```html
@@ -63,7 +67,7 @@ returns
 <body class="feature-happy feature-awesome">...</body>
 ```
 
-###Route Gating
+### Route Gating
 
 You can also "gate off" routes, which means that route is only available if your config enables it. Otherwise users will see a 503 Service Unavailable error. Here's an example:
 ```javascript
