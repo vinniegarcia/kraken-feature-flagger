@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "grunt babel",
     "compile": "",
-    "test": "grunt test"
+    "test": "grunt babel && grunt test"
   },
   "repository": {
     "type": "git",
