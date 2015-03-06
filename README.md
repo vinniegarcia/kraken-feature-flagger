@@ -2,6 +2,7 @@ kraken-feature-flagger
 ===
 [![npm version](https://badge.fury.io/js/kraken-feature-flagger.svg)](http://badge.fury.io/js/kraken-feature-flagger)
 [![travis build information](https://api.travis-ci.org/vinniegarcia/kraken-feature-flagger.svg)](https://travis-ci.org/vinniegarcia/kraken-feature-flagger)
+[![Coverage Status](https://coveralls.io/repos/vinniegarcia/kraken-feature-flagger/badge.svg?branch=master)](https://coveralls.io/r/vinniegarcia/kraken-feature-flagger?branch=master)
 
 Feature flags for Kraken JS apps.
 
