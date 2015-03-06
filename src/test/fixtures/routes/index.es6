@@ -1,24 +1,24 @@
 import gate from '../../../gate';
 
-function router(app) {
-    app.get('/', function(req, res) {
+const controller = (router) => {
+    router.get('/', function(req, res) {
         res.json({
             public: true
         });
     });
-    app.get('/beard', gate('beard'), (req, res) => {
+    router.get('/beard', gate('beard'), (req, res) => {
         res.json({
             private: true,
             feature: 'beard'
         });
     });
 
-    app.get('/weiting', gate('weiting'), (req, res) => {
+    router.get('/weiting', gate('weiting'), (req, res) => {
         res.json({
             private: true,
             feature: 'weiting'
         });
     });
-}
+};
 
-export default router;
+export default controller;

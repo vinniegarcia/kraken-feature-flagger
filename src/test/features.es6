@@ -1,5 +1,5 @@
 // node builtins
-import assert from 'assert';
+import {ok} from 'assert';
 import http from 'http';
 // ext modules
 import request from 'supertest';
@@ -7,52 +7,30 @@ import portfinder from 'portfinder';
 // modules under test
 import getFeatures from '../index';
 // test fixtures
+import { response as res, request as wreck } from './fixtures/';
 import app from './fixtures/app';
 
-
-const server = http.createServer(app);
-
-const getRequest = () => {
-    return {
-        app: {
-            kraken: {
-                get: (item) => {
-                    const items = {
-                        'features': {
-                            'happy': true,
-                            'sad': false,
-                            'weiting': true,
-                            'beard': false
-                        }
-                    };
-                    return items[item] || undefined;
-                }
-            }
-        }
-    };
-};
-
 describe('feature flag middleware test', () => {
-    it('should have some features', function (done) {
-        this.timeout(20000);
-        let req = getRequest(),
-        res = {
-            locals: {}
-        },
-        next = () => {
-            assert.ok(Object.keys(req.app.kraken.get('features')).length > 1, 'TWO FEATURES SHOULD BE ENABLED MAN');
-            assert.ok(res.locals.featureClasses.indexOf('feature-weiting') !== -1, 'NO WEITING FEATURE? I DEMAND SATISFACTION!');
-            assert.ok(res.locals.featureClasses.indexOf('feature-happy') !== -1, 'SO SAD')
-            assert.ok(res.locals.featureClasses.indexOf('feature-sad') === -1, 'THERE SHALL BE NO SADNESS HERE');
-            assert.ok(req.features.has('happy'), 'NO HAPPY FEATURE');
-            assert.ok(req.features.has('weiting'), 'NO WEITING FEATURE');
+    it('should have some features', (done) => {
+        let req = wreck(),
+        assertions = () => {
+            ok(Object.keys(req.app.kraken.get('features')).length > 1, 'TWO FEATURES SHOULD BE ENABLED MAN');
+            ok(res.locals.featureClasses.indexOf('feature-weiting') !== -1, 'NO WEITING FEATURE? I DEMAND SATISFACTION!');
+            ok(res.locals.featureClasses.indexOf('feature-happy') !== -1, 'SO SAD')
+            ok(res.locals.featureClasses.indexOf('feature-sad') === -1, 'THERE SHALL BE NO SADNESS HERE');
+            ok(req.features.has('happy'), 'NO HAPPY FEATURE');
+            ok(!req.features.has('sad'), 'SO SAD');
+            ok(req.features.has('weiting'), 'NO WEITING FEATURE');
             done();
         };
-        getFeatures()(req, res, next);
+        getFeatures()(req, res, assertions);
     })
 });
 
-describe('server test', () => {
+describe('gate test (kraken server)', () => {
+
+  const server = http.createServer(app);
+
 	before((done) => {
 		portfinder.getPort((err, port) => {
 			if (err) {
@@ -61,11 +39,12 @@ describe('server test', () => {
 			server.listen(port, done);
 		});
 	});
+
 	after((done) => {
 		server.close(done);
 	});
 
-	it('should not be able to access the beard route', function (done) {
+	it('should not be able to access the beard route', (done) => {
 		request(server)
 			.get('/beard')
 			.expect(503)
@@ -77,7 +56,7 @@ describe('server test', () => {
 			});
 	});
 
-	it('should be able to access an enabled route', function (done) {
+	it('should be able to access an enabled route', (done) => {
 		request(server)
 			.get('/weiting')
 			.expect(200)
@@ -85,7 +64,7 @@ describe('server test', () => {
 				if (err) {
 					return done(err);
 				}
-				assert.ok(res.body.private && res.body.feature === 'weiting', 'Did not get the expected json body!');
+				ok(res.body.private && res.body.feature === 'weiting', 'Did not get the expected json body!');
 				done();
 			});
 	});
