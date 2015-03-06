@@ -1,6 +1,6 @@
 {
   "name": "kraken-feature-flagger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Feature Flags for Kraken",
   "main": "dist/index.js",
   "scripts": {
