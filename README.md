@@ -7,7 +7,7 @@ Feature flags for Kraken JS apps.
 
 ## Install
 
-```npm install kraken-feature-flags --save```
+```npm install kraken-feature-flagger --save```
 
 ## Usage
 
