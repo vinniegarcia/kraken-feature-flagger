@@ -1,12 +1,15 @@
 {
   "name": "kraken-feature-flagger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Feature Flags for Kraken",
   "main": "dist/index.js",
   "scripts": {
-    "compile": "babel -d dist/ src/",
-    "prepublish": "npm run compile",
-    "test": "npm run compile && mocha dist/test/features.js"
+    "cc": "babel --experimental -d dist/ src/",
+    "prepublish": "npm run cc",
+    "mocha": "npm run cc && ./node_modules/mocha/bin/_mocha dist/test/*.js",
+    "istanbul": "npm run cc && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly dist/test/*.js",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "test": "npm run istanbul && npm run coveralls"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel": "^4.5.1",
+    "coveralls": "^2.11.2",
     "eslint": "^0.15.0",
     "express": "^4.12.2",
     "grunt": "^0.4.5",
@@ -30,15 +34,15 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-eslint": "^7.0.1",
     "grunt-mocha-cli": "^1.12.0",
+    "istanbul": "^0.3.7",
     "kraken": "^0.2.1",
     "kraken-js": "^1.0.3",
     "load-grunt-config": "^0.16.0",
     "load-grunt-tasks": "^3.1.0",
     "mocha": "^2.1.0",
+    "mocha-lcov-reporter": "0.0.2",
     "portfinder": "^0.4.0",
     "supertest": "^0.15.0"
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }
