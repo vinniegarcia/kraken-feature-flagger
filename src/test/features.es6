@@ -42,7 +42,9 @@ describe('gate test (kraken server)', () => {
 		});
 	});
 
-	after(server.close);
+	after((done) => {
+		server.close(done);
+	});
 
 	it('should not be able to access the beard route', (done) => {
 		request(server)
