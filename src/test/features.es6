@@ -1,3 +1,4 @@
+'use strict';
 // node builtins
 import {ok} from 'assert';
 import http from 'http';
@@ -18,7 +19,7 @@ describe('feature flag middleware test', () => {
       assertions = () => {
           ok(Object.keys(req.app.kraken.get('features')).length > 1, 'TWO FEATURES SHOULD BE ENABLED MAN');
           ok(hasClass('feature-weiting'), 'NO WEITING FEATURE? I DEMAND SATISFACTION!');
-          ok(hasClass('feature-happy'), 'SO SAD')
+          ok(hasClass('feature-happy'), 'SO SAD');
           ok(!hasClass('feature-sad'), 'THERE SHALL BE NO SADNESS HERE');
           ok(req.features.has('happy'), 'NO HAPPY FEATURE');
           ok(!req.features.has('sad'), 'SO SAD');
@@ -26,7 +27,7 @@ describe('feature flag middleware test', () => {
           done();
       };
       getFeatures()(req, res, assertions);
-  })
+  });
 });
 
 describe('gate test (kraken server)', () => {
@@ -50,7 +51,7 @@ describe('gate test (kraken server)', () => {
 		request(server)
 			.get('/beard')
 			.expect(503)
-			.end((err, res) => {
+			.end((err) => {
 				if (err) {
 					return done(err);
 				}
@@ -62,11 +63,11 @@ describe('gate test (kraken server)', () => {
 		request(server)
 			.get('/weiting')
 			.expect(200)
-			.end((err, res) => {
+			.end((err, resp) => {
 				if (err) {
 					return done(err);
 				}
-				ok(res.body.private && res.body.feature === 'weiting', 'Did not get the expected json body!');
+				ok(resp.body.private && resp.body.feature === 'weiting', 'Did not get the expected json body!');
 				done();
 			});
 	});

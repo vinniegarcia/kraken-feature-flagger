@@ -1,3 +1,5 @@
+'use strict';
+
 import gate from '../../../gate';
 
 const controller = (router) => {

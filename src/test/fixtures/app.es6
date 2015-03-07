@@ -1,3 +1,5 @@
+'use strict';
+
 import express from 'express';
 import kraken from 'kraken-js';
 import path from 'path';
@@ -16,10 +18,10 @@ const options = {
         });
         //set up routing
         config.set('middleware:router', {
-            "module": {
-            	"name": "express-enrouten",
-                "arguments": [{
-                    "directory": path.resolve(routedir)
+            'module': {
+              'name': 'express-enrouten',
+                'arguments': [{
+                    'directory': path.resolve(routedir)
                 }]
             }
         });

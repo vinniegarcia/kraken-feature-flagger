@@ -1,3 +1,5 @@
+'use strict';
+
 const request = () => {
   const get = (item) => {
     const items = {
