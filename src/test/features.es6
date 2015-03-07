@@ -10,23 +10,23 @@ import getFeatures from '../index';
 import { response as res, request as wreck } from './fixtures/';
 import app from './fixtures/app';
 
-const hasClass = (feat) => (res.locals.featureClasses.indexOf(feat) !== -1);
-
 describe('feature flag middleware test', () => {
-    it('should have some features', (done) => {
-        let req = wreck(),
-        assertions = () => {
-            ok(Object.keys(req.app.kraken.get('features')).length > 1, 'TWO FEATURES SHOULD BE ENABLED MAN');
-            ok(hasClass('feature-weiting'), 'NO WEITING FEATURE? I DEMAND SATISFACTION!');
-            ok(hasClass('feature-happy'), 'SO SAD')
-            ok(!hasClass('feature-sad'), 'THERE SHALL BE NO SADNESS HERE');
-            ok(req.features.has('happy'), 'NO HAPPY FEATURE');
-            ok(!req.features.has('sad'), 'SO SAD');
-            ok(req.features.has('weiting'), 'NO WEITING FEATURE');
-            done();
-        };
-        getFeatures()(req, res, assertions);
-    })
+  const hasClass = (feat) => (res.locals.featureClasses.indexOf(feat) !== -1);
+
+  it('should have some features', (done) => {
+      let req = wreck(),
+      assertions = () => {
+          ok(Object.keys(req.app.kraken.get('features')).length > 1, 'TWO FEATURES SHOULD BE ENABLED MAN');
+          ok(hasClass('feature-weiting'), 'NO WEITING FEATURE? I DEMAND SATISFACTION!');
+          ok(hasClass('feature-happy'), 'SO SAD')
+          ok(!hasClass('feature-sad'), 'THERE SHALL BE NO SADNESS HERE');
+          ok(req.features.has('happy'), 'NO HAPPY FEATURE');
+          ok(!req.features.has('sad'), 'SO SAD');
+          ok(req.features.has('weiting'), 'NO WEITING FEATURE');
+          done();
+      };
+      getFeatures()(req, res, assertions);
+  })
 });
 
 describe('gate test (kraken server)', () => {
@@ -42,9 +42,7 @@ describe('gate test (kraken server)', () => {
 		});
 	});
 
-	after((done) => {
-		server.close(done);
-	});
+	after(server.close);
 
 	it('should not be able to access the beard route', (done) => {
 		request(server)
