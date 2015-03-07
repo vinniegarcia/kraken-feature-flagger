@@ -10,14 +10,16 @@ import getFeatures from '../index';
 import { response as res, request as wreck } from './fixtures/';
 import app from './fixtures/app';
 
+const hasClass = (feat) => (res.locals.featureClasses.indexOf(feat) !== -1);
+
 describe('feature flag middleware test', () => {
     it('should have some features', (done) => {
         let req = wreck(),
         assertions = () => {
             ok(Object.keys(req.app.kraken.get('features')).length > 1, 'TWO FEATURES SHOULD BE ENABLED MAN');
-            ok(res.locals.featureClasses.indexOf('feature-weiting') !== -1, 'NO WEITING FEATURE? I DEMAND SATISFACTION!');
-            ok(res.locals.featureClasses.indexOf('feature-happy') !== -1, 'SO SAD')
-            ok(res.locals.featureClasses.indexOf('feature-sad') === -1, 'THERE SHALL BE NO SADNESS HERE');
+            ok(hasClass('feature-weiting'), 'NO WEITING FEATURE? I DEMAND SATISFACTION!');
+            ok(hasClass('feature-happy'), 'SO SAD')
+            ok(!hasClass('feature-sad'), 'THERE SHALL BE NO SADNESS HERE');
             ok(req.features.has('happy'), 'NO HAPPY FEATURE');
             ok(!req.features.has('sad'), 'SO SAD');
             ok(req.features.has('weiting'), 'NO WEITING FEATURE');
